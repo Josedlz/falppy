@@ -16,9 +16,7 @@ class player_t : public entity_t{
 		bool get_control();
 		void set_control(bool state);
 		int get_ammo();
-		void add_ammo();
 		void subtr_ammo();
-
 };
 
 #endif

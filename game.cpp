@@ -153,14 +153,24 @@ void game_t::update_player() {
       case 'a' : jugador.move(0, -1, ground);
                  break;
       case 's' : jugador.move(1, 0, ground);
-                  break;
+                 break;
       case 'd' : jugador.move(0, 1, ground);
-                  break;
+                 break;
       case 'w' : jugador.move(-1, 0, ground);
-                  break;
+                 break;
       case 'q' : game_over = true;
+                 break;
       default: jugador.move(0, 0, ground);
     }
+  }
+  std::vector<dardo_t>& v = jugador.get_dardos();
+  for(int i = 0; i < enemies.size(); i++){
+    for(int j = 0; j < v.size(); j++){
+      if(v[j].get_x() == enemies[i].get_x() && v[j].get_y() == enemies[i].get_y()){
+        enemies.erase(enemies.begin() + i - 1);
+        v.erase(v.begin() + j - 1);
+      }
+    } 
   }
 
   for(int i = 0; i < enemies.size(); i++){
@@ -169,14 +179,13 @@ void game_t::update_player() {
       ground[jugador.get_x()][jugador.get_y()] = 'x';
     }
   }
-
 }
 
 void game_t::update_darts() {
    
   std::vector<dardo_t>& v = jugador.get_dardos();
   //si presione la tecla de disparar
-  if(*input == 'k'){
+  if(*input == 'k' && jugador.get_ammo() > 0){
   //disparar el que todavia no se ha disparado
     for(int i = 0; i < v.size(); i++){
       if(!v[i].get_shot()){
@@ -207,10 +216,18 @@ void game_t::update_darts() {
           }
         }else{
           //checkeo si el dardo ha llegado al piso
-          if(ground[v[i].get_x() + 1][v[i].get_y()] == '#'){
-            v[i].set_shot(false);
-          }
           v[i].move(1, 0, ground);
+          if(ground[v[i].get_x() + 1][v[i].get_y()] == '#' && v[i].get_direction() == 3){
+            ground[v[i].get_x()][v[i].get_y()] = '>';
+            v.erase(v.begin() + i - 1);
+            //checkeo si aun hay dardos en el aire
+            for(int j = 0; j < v.size(); j++){
+              if(v[j].get_shot()){
+                return;
+              }
+            }
+             controlling_player = true;
+          }
         }
       }
     }
