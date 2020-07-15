@@ -6,6 +6,7 @@
 #include "player.h"
 #include "enemy.h"
 #include "dardo.h"
+#include "rock.h"
 
 #include <unistd.h>
 //esta es para la funcion "readr"
@@ -16,9 +17,6 @@ class game_t
   private:
     int* input;
     bool game_over = false;
-    std::vector<char> lives_in_game = {'p', 'p', 'p'};
-    std::vector<char> dardos_in_game;
-    std::vector<char> enemies_in_game;
 
     int n = 17;
     int m = 17;
@@ -27,12 +25,16 @@ class game_t
     bool controlling_player = true;
     player_t jugador;
     std::vector<enemy_t> enemies;
+    std::vector<rock_t> rocks;
+
+    int lives_in_game = 5;
 
     bool stage_ended = false;
     int stage = 1;
     //update functions 
     void update_control();
     void update_player();
+    void update_rocks();
     void update_darts();
     void update_cure();
     void update_enemies();

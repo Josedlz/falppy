@@ -62,5 +62,7 @@
         "typeinfo": "cpp",
         "valarray": "cpp",
         "variant": "cpp"
-    }
+    },
+    "extensions.ignoreRecommendations": true,
+    "files.autoSave": "off"
 }

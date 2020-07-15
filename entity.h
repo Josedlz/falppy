@@ -2,6 +2,7 @@
 #define ENTITY_H
 
 #include <vector>
+#include <iostream>
 
 class entity_t{
 	protected:
@@ -12,7 +13,6 @@ class entity_t{
 	public:
 		entity_t() = default;
 		entity_t(int x, int y, std::vector<std::vector<char>>& mapa);
-		virtual ~entity_t() = default;
 		virtual void move(int dx, int dy, std::vector<std::vector<char>>& mapa) = 0;
 		virtual void set_coords(int x_, int y_);
 		virtual int get_x();

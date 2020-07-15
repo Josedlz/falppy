@@ -55,7 +55,7 @@ bool dardo_t::get_control(){
 
 void dardo_t::shoot(int x_, int y_, int dir, std::vector<std::vector<char>>& mapa){
     //si disparo al lado de una pared, no disparo. si no,
-    //le paso las coordenadas y direccion del jugador que disparo;
+    //le paso las coordenadas y direccion del jugador que disparo
     switch(dir){
         case 1: if(mapa[x_ - 1][y_] == '#') return; 
                 shot = true;

@@ -6,8 +6,8 @@
 
 class player_t : public entity_t{
 	private:
-	std::vector<dardo_t> dardos;
-	int ammo = 0;
+		std::vector<dardo_t> dardos;
+		int ammo = 0;
 	public:
 		player_t() = default;
 		player_t(int x, int y, std::vector<std::vector<char>>& mapa);
