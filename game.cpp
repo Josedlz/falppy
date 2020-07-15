@@ -52,24 +52,25 @@ void game_t::create_es_1() {
   ground = 
   { 
     // 0    1     2    3   4    5    6    7    8    9    10   11   12   13   14   15   16 
-    { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' }, 
-    { '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#' }, 
-    { '#', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', '#' }, 
-    { '#', ' ', '>', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'o', ' ', ' ', ' ', ' ', ' ', '#' }, 
-    { '#', ' ', '>', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', '#' }, 
-    { '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'o', ' ', ' ', ' ', ' ', ' ', ' ', '#' }, 
-    { '#', ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' }, 
-    { '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'o', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#' }, 
-    { '#', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', '#' }, 
-    { '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#' }, 
-    { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', ' ', ' ', '#' }, 
-    { '#', ' ', ' ', ' ', ' ', 'o', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#' }, 
-    { '#', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', '#' }, 
-    { '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#' }, 
-    { '#', '#', ' ', '#', '#', '#', ' ', '#', '#', ' ', '#', '#', '#', ' ', '#', '%', '#' }, 
-    { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' }, 
-    { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' }
+    { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' }, //0
+    { '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#' }, //1 
+    { '#', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', '#' }, //2 
+    { '#', ' ', '>', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'o', ' ', ' ', ' ', ' ', ' ', '#' }, //3 
+    { '#', ' ', '>', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', '#' }, //4 
+    { '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'o', ' ', ' ', ' ', ' ', ' ', ' ', '#' }, //5 
+    { '#', ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' }, //6 
+    { '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'o', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#' }, //7
+    { '#', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', '#' }, //8 
+    { '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#' }, //9
+    { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', ' ', ' ', '#' }, //10
+    { '#', ' ', ' ', ' ', ' ', 'o', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#' }, //11
+    { '#', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', '#' }, //12
+    { '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#' }, //13
+    { '#', '#', ' ', '#', '#', '#', ' ', '#', '#', ' ', '#', '#', '#', '#', '#', '%', '#' }, //14 
+    { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' }, //15 
+    { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' }  //16
   };
+
   jugador.set_coords(1, 1);
   enemy_t enemy_1(13, 13, ground);
   enemy_t enemy_2(5, 15, ground);
@@ -83,7 +84,6 @@ void game_t::create_es_1() {
   rocks.push_back(rock_2);
   rocks.push_back(rock_3);
   rocks.push_back(rock_4);
-
 }
 
 // Escenario 2
@@ -198,7 +198,7 @@ void game_t::readr(int* key, bool wait) {
 }
 
 // Manejar el dardo
-void game_t::update_control() {
+void game_t::update_control(){
   std::vector<dardo_t>& v = jugador.get_dardos();
   //si presiono la tecla de control una vez
   if(*input == 'j'){
@@ -218,14 +218,15 @@ void game_t::update_control() {
       }
     }
   }
-  //debo ver si ya no hay ningun dardo
-  //que pueda controlar
-  for(int i = 0; i < v.size(); i++){
-    if(v[i].get_control()){
-      return;
+  //debo ver si hay algun dardo para controlar
+  if(!controlling_player){
+    for(int i = 0; i < v.size(); i++){
+      if(v[i].get_shot() && v[i].get_control()){
+        return;
+      }
     }
+    controlling_player = true;
   }
-  controlling_player = true;
 }
 
 // Actualizar al jugador
@@ -233,6 +234,7 @@ void game_t::update_player() {
   if(!jugador.get_alive()){
     game_over = true;
     // Implementar el counter de vidas.
+    return;
   }
 
   if(controlling_player){
@@ -285,7 +287,20 @@ void game_t::update_darts() {
     for(int i = 0; i < v.size(); i++){
       if(!v[i].get_shot()){
         v[i].shoot(jugador.get_x(), jugador.get_y(), jugador.get_direction(), ground);
+        jugador.subtr_ammo();
         break;
+      }
+    }
+  }
+  //es un dardo disparado pero que no puedo controlar
+  //lo muevo hacia abajo siempre
+  //checkeo si el dardo ha llegado al piso
+  for(int i = 0; i < v.size(); i++){
+    if(v[i].get_shot() && !v[i].get_control()){
+      v[i].move(1, 0, ground);
+      if(ground[v[i].get_x() + 1][v[i].get_y()] == '#' && v[i].get_direction() == 3){
+        ground[v[i].get_x()][v[i].get_y()] = '>';
+        v.erase(v.begin() + i - 1);
       }
     }
   }
@@ -309,23 +324,6 @@ void game_t::update_darts() {
             case 'q' : game_over = true;
             default: v[i].move(0, 0, ground);
           }
-        }else{ //ha sido disparado pero estan fuera de control
-          //checkeo si hay mas dardos que controlar aparte de este
-          bool found = false;
-          for(int j = 0; j < v.size(); j++){
-            if(j == i) continue;
-            if(v[j].get_control()){
-              found = true;
-              break;
-            }
-          }
-          if(!found) controlling_player = true;
-          //checkeo si el dardo ha llegado al piso
-          v[i].move(1, 0, ground);
-          if(ground[v[i].get_x() + 1][v[i].get_y()] == '#' && v[i].get_direction() == 3){
-            ground[v[i].get_x()][v[i].get_y()] = '>';
-            v.erase(v.begin() + i - 1);
-          }
         }
       }
     }
@@ -338,23 +336,17 @@ void game_t::update_cure() {
 
 // Actualizar enemigos
 void game_t::update_enemies() {
-  for(int i = 0; i < enemies.size(); i++){
-    if(!enemies[i].get_alive()){
-      ground[enemies[i].get_x()][enemies[i].get_y()] = ' ';
-    }
-  }
   //checkeamos si los enemigos siguen vivos
-  //borramos los enemigos del mapa si estan muertos
+  //borramos los enemigos si estan muertos
   //y los dardos tambien si dieron en su blanco
   std::vector<dardo_t>& v = jugador.get_dardos();
   for(int i = 0; i < enemies.size(); i++){
     for(int j = 0; j < v.size(); j++){
-      if(v[j].get_x() == enemies[i].get_x() && v[j].get_y() == enemies[i].get_y()){
+      if((v[j].get_x() == enemies[i].get_x()) && (v[j].get_y() == enemies[i].get_y())){
         int x = v[j].get_x(); int y = v[j].get_y();
         enemies.erase(enemies.begin() + i - 1);
         v.erase(v.begin() + j - 1);
         ground[x][y] = ' ';
-        //debo checkear si hay mas dardos
       }
     } 
   }
