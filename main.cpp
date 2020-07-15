@@ -17,7 +17,7 @@ int main()
     g.readr(&key, false);
     cout << char(key) << endl;
     g.update();
-    system("clear");
+    //system("clear");
     g.render();
     key = ' ';
   }

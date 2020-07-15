@@ -3,16 +3,16 @@
 void dardo_t::move(int dx, int dy, std::vector<std::vector<char>>& mapa){
 
     if(mapa[x + dx][y + dy] == '#'){
-        if(mapa[x][y] == '<' && dx == 0 && dy == -1){
+        if(direction == 4 && dx == 0 && dy == -1){
             control = false;
         }else
-        if(mapa[x][y] == 'v' && dx == 1 && dy == 0){
+        if(direction == 3 && dx == 1 && dy == 0){
             control = false;
         }else
-        if(mapa[x][y] == '>' && dx == 0 && dy == 1){
+        if(direction == 2 && dx == 0 && dy == 1){
             control = false;
         }else
-        if(mapa[x][y] == '^' && dx == -1 && dy == 0){
+        if(direction == 1 && dx == -1 && dy == 0){
             control = false;
         }
         return;
@@ -20,25 +20,33 @@ void dardo_t::move(int dx, int dy, std::vector<std::vector<char>>& mapa){
 
     mapa[x][y] = ' ';
 
-    if(dx = 0 && dy == -1){
-        mapa[x + dx][y + dy] = '<';
+    x += dx;
+    y += dy;
+
+    if(dx == 0 && dy == -1){
+        mapa[x][y] = '<';
         direction = 4;
     }else
     if(dx == 1 && dy == 0){
-        mapa[x + dx][y + dy] = 'v'; 
+        mapa[x][y] = 'v'; 
         direction = 3;
     }else
     if(dx == 0 && dy == 1){
-        mapa[x + dx][y + dy] = '>';
+        mapa[x][y] = '>';
         direction = 2;
     }else
     if(dx == -1 && dy == 0){
-        mapa[x + dx][y + dy] = '^';
+        mapa[x][y] = '^';
         direction = 1;
     }
-
-    x += dx;
-    y += dy;
+    else{
+        switch(direction){
+            case 1 : mapa[x][y] = '^';
+            case 3 : mapa[x][y] = 'v';
+            case 4 : mapa[x][y] = '<';
+            default : mapa[x][y] = '>';
+        }
+    }
 }
 
 bool dardo_t::get_control(){
