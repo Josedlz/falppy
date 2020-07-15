@@ -305,9 +305,8 @@ void game_t::update_darts() {
     }
   }
   //mover a los que estan en el aire
-  //dos casos para estos dardos:
-  //1. no estoy controlando al jugador,
-  //por lo que controlo a los que puedo controlar
+  //si no estoy controlando al jugador,
+  //controlo a los dardos que puedo controlar
   if(!controlling_player) {
     for(int i = 0; i < v.size(); i++){
       if(v[i].get_shot()){
