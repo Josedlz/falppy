@@ -16,10 +16,13 @@ class game_t
   private:
     int* input;
     bool game_over = false;
+    std::vector<char> lives_in_game = {'p', 'p', 'p'};
+    std::vector<char> dardos_in_game;
+    std::vector<char> enemies_in_game;
 
     int n = 17;
     int m = 17;
-    std::vector<std::vector<char>> ground{17, std::vector<char>(17)};
+    std::vector<std::vector<char>> ground{17, std::vector<char>(m)};
 
     bool controlling_player = true;
     player_t jugador;
@@ -41,6 +44,8 @@ class game_t
     void update();
     void render();
     void next_stage();
+    void create_header_game();
+    void create_footer_game();
     void create_es_1();
     void create_es_2();
     void create_es_3();

@@ -11,7 +11,7 @@ void player_t::move(int dx, int dy, std::vector<std::vector<char>>& mapa){
     if(mapa[x + dx][y + dy] == '#'){
         return;
     }
-    if(dx = 0 && dy == -1){
+    if(dx == 0 && dy == -1){
         direction = 4;
     }else
     if(dx == 1 && dy == 0){
@@ -32,7 +32,7 @@ void player_t::move(int dx, int dy, std::vector<std::vector<char>>& mapa){
         dardos.push_back(d);
     }
     mapa[x][y] = 'p';
-    std::cout << x << " " << y << std::endl;
+    // std::cout << x << " " << y << std::endl;
 }
    
 std::vector<dardo_t>& player_t::get_dardos(){

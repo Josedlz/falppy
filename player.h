@@ -18,7 +18,6 @@ class player_t : public entity_t{
 		int get_ammo();
 		void add_ammo();
 		void subtr_ammo();
-
 };
 
 #endif
