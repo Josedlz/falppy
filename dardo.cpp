@@ -2,7 +2,7 @@
 
 void dardo_t::move(int dx, int dy, std::vector<std::vector<char>>& mapa){
 
-    if(mapa[x + dx][y + dy] == '#'){
+    if(mapa[x + dx][y + dy] == '#' || mapa[x + dx][y + dy] == 'o'){
         if(direction == 4 && dx == 0 && dy == -1){
             control = false;
         }else

@@ -72,7 +72,7 @@ void game_t::create_es_1() {
   };
 
   jugador.set_coords(1, 1);
-  enemy_t enemy_1(13, 13, ground);
+  enemy_t enemy_1(13, 14, ground);
   enemy_t enemy_2(5, 15, ground);
   enemies.push_back(enemy_1);
   enemies.push_back(enemy_2);
@@ -268,6 +268,15 @@ void game_t::update_player() {
 }
 
 void game_t::update_rocks(){
+  //verificar si hay un enemigo debajo
+  for(int i = 0; i < rocks.size(); i++){
+    for(int j = 0;  j < enemies.size(); j++){
+      if(rocks[i].get_x() + 1 == enemies[j].get_x() && rocks[i].get_y() == enemies[j].get_y()){
+        enemies.erase(enemies.begin() + j);
+        std::cout <<"////////ENEMIGO MUERTO//////////" << std::endl;
+      }
+    }
+  }
   for(int i = 0; i < rocks.size(); i++){
     //if(jugador.get_x() == rocks[i].get_x() && jugador.get_y() == rocks[i].get_y() + 1)  
     if(jugador.get_x() == rocks[i].get_x() && jugador.get_y() == rocks[i].get_y()){
@@ -384,7 +393,7 @@ void game_t::update_enemies() {
         int x = v[j].get_x(); int y = v[j].get_y();
         enemies.erase(enemies.begin() + i);
         v.erase(v.begin() + j);
-        std::cout <<"////////ENEMIGO MUERTO////////////" << std::endl;
+        std::cout <<"////////ENEMIGO MUERTO//////////" << std::endl;
         ground[x][y] = ' ';
       }
     } 
