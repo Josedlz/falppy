@@ -19,7 +19,7 @@ void player_t::move(int dx, int dy, std::vector<std::vector<char>>& mapa){
     }else
     if(dx == 0 && dy == 1){
         direction = 2;
-    }else{
+    }else if(dx == -1 && dy == 0){
         direction = 1;
     }
 
@@ -29,7 +29,6 @@ void player_t::move(int dx, int dy, std::vector<std::vector<char>>& mapa){
     if(mapa[x][y] == '>'){
         dardo_t d;
         dardos.push_back(d);
-        ammo++;
     }
     mapa[x][y] = 'p';
 }
@@ -42,6 +41,6 @@ int player_t::get_ammo() {
     return ammo;
 }
 
-void player_t::subtr_ammo() {
-    ammo--;
+void player_t::set_ammo(int a) {
+    ammo = a;
 }

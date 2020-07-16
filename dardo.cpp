@@ -49,6 +49,10 @@ void dardo_t::move(int dx, int dy, std::vector<std::vector<char>>& mapa){
     }
 }
 
+void dardo_t::set_direction(int d){
+    direction = d;
+}
+
 bool dardo_t::get_control(){
     return control;
 }
@@ -62,24 +66,28 @@ void dardo_t::shoot(int x_, int y_, int dir, std::vector<std::vector<char>>& map
                 x = x_ - 1;
                 y = y_;
                 mapa[x][y] = '^';
+                direction = 1;
                 return;
         case 2: if(mapa[x_][y_ + 1] == '#') return;
                 shot = true;
                 x = x_;
                 y = y_ + 1;
                 mapa[x][y] = '>';
+                direction = 2;
                 return;
         case 3: if(mapa[x_ + 1][y_] == '#') return;
                 shot = true;
                 x = x_ + 1;
                 y = y_;
                 mapa[x][y] = 'v';
+                direction = 3;
                 return;
         case 4: if(mapa[x_][y_ - 1] == '#') return; 
                 shot = true;
                 x = x_;
                 y = y_ - 1;
                 mapa[x][y] = '<';
+                direction = 4;
                 return;
     }
 }
