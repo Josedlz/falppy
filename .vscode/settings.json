@@ -64,5 +64,5 @@
         "variant": "cpp"
     },
     "extensions.ignoreRecommendations": true,
-    //"files.autoSave": "off"
+    "files.autoSave": "off"
 }

@@ -6,7 +6,7 @@
 // Cabecera del juego (DECORADOR)
 void game_t::create_header_game() {
   for(int j=0; j<50; j++) {
-    std::cout << "\033[1;32m#\033[0m";
+    std::cout << "\033[1;33m#\033[0m";
   }
   std::cout << '\n';
   for(int i=0; i<3; i++) {
@@ -14,7 +14,7 @@ void game_t::create_header_game() {
       std::cout << "\033[1;4;35m Falppy \033[0m";
     } else {
       for(int j=0; j<50/2 - 4; j++) 
-        std::cout << "\033[1;32m#\033[0m";
+        std::cout << "\033[1;33m#\033[0m";
     }
   }
   std::cout << '\n';
@@ -458,7 +458,7 @@ void game_t::render() {
       //     std::cout << "\033[1;33m" << ground[i][j] << "\033[0m" << " ";
       }
     }
-    for(int j=0; j<50/2 - n; j++) 
+    for(int j=0; j<50/2 - n+1; j++) 
         std::cout << "\033[1;32m#\033[0m";
     std::cout << '\n';
   }
