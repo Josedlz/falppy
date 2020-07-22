@@ -15,11 +15,11 @@ int main()
   while(g.running()) {
     cout << "Presione tecla:  " << endl;
     g.readr(&key, false);
-    cout << char(key) << endl;
+    //cout << char(key) << endl;
     g.update();
-    //system("clear");
+    system("clear");
     g.render();
     key = ' ';
   }
-  cout << "Game Over" << endl;
+  cout << "Game Over :(" << endl;
 }

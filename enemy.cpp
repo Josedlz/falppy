@@ -4,7 +4,7 @@
 enemy_t::enemy_t(int x_, int y_, std::vector<std::vector<char>>& mapa) : entity_t(x_, y_, mapa){
     x = x_;
     y = y_;
-    mapa[x][y] = 'c';
+    mapa[x][y] = 'e';
 }
 
 void enemy_t::move(int dx, int dy, std::vector<std::vector<char>>& mapa){
@@ -12,7 +12,7 @@ void enemy_t::move(int dx, int dy, std::vector<std::vector<char>>& mapa){
         return;
     }
     mapa[x][y] = ' ';
-    mapa[x + dx][y + dy] = 'c';
+    mapa[x + dx][y + dy] = 'e';
     x += dx;
     y += dy;
 }

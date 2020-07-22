@@ -5,17 +5,16 @@
 
 // Cabecera del juego (DECORADOR)
 void game_t::create_header_game() {
-  for(int j=0; j<37; j++) {
-    std::cout << "#";
+  for(int j=0; j<50; j++) {
+    std::cout << "\033[1;32m#\033[0m";
   }
   std::cout << '\n';
   for(int i=0; i<3; i++) {
     if(i == 1) {
-      std::cout << " Falppie ";
+      std::cout << "\033[1;4;35m Falppy \033[0m";
     } else {
-      for(int j=0; j<14; j++) {
-        std::cout << "#";
-      }
+      for(int j=0; j<50/2 - 4; j++) 
+        std::cout << "\033[1;32m#\033[0m";
     }
   }
   std::cout << '\n';
@@ -32,16 +31,16 @@ void game_t::create_header_game() {
   std::cout << " ##";
 
   std::cout << '\n';
-  for(int j=0; j<37; j++) {
-    std::cout << "#";
+  for(int j=0; j<50; j++) {
+    std::cout << "\033[1;32m#\033[0m";
   }
   std::cout << '\n';
 }
 // Pie del juego (DECORADOR)
 void game_t::create_footer_game() {
   for(int i=0; i<2; i++) {
-    for(int j=0; j<37; j++) {
-      std::cout << "#";
+    for(int j=0; j<50; j++) {
+      std::cout << "\033[1;32m#\033[0m";
     }
     std::cout << '\n';
   }
@@ -427,15 +426,40 @@ void game_t::update() {
 void game_t::render() {
   create_header_game();
   for(int i = 0; i < n; i++){
-    std::cout << "##";
+    for(int j=0; j<50/2 - n; j++) 
+        std::cout << "\033[1;32m#\033[0m";
     for(int j = 0; j < m; j++){
       if(m-j == 1) {
-        std::cout << ground[i][j];
+        std::cout << "\033[1;32m" << ground[i][j] << "\033[0m";
       } else {
-        std::cout << ground[i][j] << " ";
+        if(ground[i][j] == '#') {
+          std::cout << "\033[1;32m" << ground[i][j] << "\033[0m" << " ";
+        } else if (ground[i][j] == 'p'){
+          std::cout << "\033[1;34m" << ground[i][j] << "\033[0m" << " ";
+        } else if(ground[i][j] == 'e'){
+          std::cout << "\033[1;31m" << ground[i][j] << "\033[0m" << " ";
+        } else if(ground[i][j] == 'o'){
+          std::cout << "\033[1;30m" << ground[i][j] << "\033[0m" << " ";
+        } else if(ground[i][j] == '>'){
+          std::cout << "\033[1;33m" << ground[i][j] << "\033[0m" << " ";
+        } else if(ground[i][j] == '%'){
+          std::cout << "\033[1;93m" << ground[i][j] << "\033[0m" << " ";
+        } else {
+          std::cout << "\033[1;34m" << ground[i][j] << "\033[0m" << " ";
+        }
+
+      // if(ground[i][j] == 'p'){
+      //     std::cout << "\033[1;34m" << ground[i][j] << "\033[0m" << " ";
+      //   } else if(ground[i][j] == 'e'){
+      //     std::cout << "\033[1;31m" << ground[i][j] << "\033[0m" << " ";
+      //   } else if(ground[i][j] == 'o'){
+      //     std::cout << "\033[1;30m" << ground[i][j] << "\033[0m" << " ";
+      //   } else if(ground[i][j] == '>'){
+      //     std::cout << "\033[1;33m" << ground[i][j] << "\033[0m" << " ";
       }
     }
-    std::cout << "##";
+    for(int j=0; j<50/2 - n; j++) 
+        std::cout << "\033[1;32m#\033[0m";
     std::cout << '\n';
   }
   create_footer_game();
