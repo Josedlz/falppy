@@ -436,7 +436,7 @@ void game_t::update_enemies() {
     } 
   }
   //iniciar el movimiento de la rutina del enemigo
-    //TODO
+    //TODO jajajaja
 }/*
 void game_t::next_stage(){
 
@@ -454,16 +454,6 @@ void game_t::update_stage() {
       next_stage = false;
       create_es_3();
     } 
-
-    // switch(stage){
-    //   case 1 : create_es_1();
-    //            break;
-    //   case 2 : create_es_2();
-    //            break;
-    //   case 3: create_es_3();
-    //             break;
-    //   default: game_won = false; break;
-   // }
   }
 }
 
