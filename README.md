@@ -23,7 +23,7 @@ $ ./falppy
 
 ###### Hecho con :heart: por las damas de compañía de Falppy uwu
 ```
-- José De Lama.
+- José de Lama.
 - Grace Alvarado.
 - Alex Loja.
 - Luis Miranda.
