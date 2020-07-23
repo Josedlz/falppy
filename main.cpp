@@ -21,5 +21,6 @@ int main()
     g.render();
     key = ' ';
   }
-  cout << "Game Over :(" << endl;
+  if(g.get_game_won() == true) cout << "Lo lograste crack!";
+  else cout << "Game Over :(" << endl;
 }

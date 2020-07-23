@@ -125,8 +125,10 @@ void game_t::create_es_2() {
   rocks.push_back(rock_1);
   rocks.push_back(rock_2);
   rocks.push_back(rock_3);
-  cure_t cure_1(2,4, ground);
-  cures.push_back(cure_1);
+  // cure_t cure_1(2,4, ground);
+  cures.clear();
+  cure_t cure_2(13,14, ground);
+  cures.push_back(cure_2);
 }
 
 // Escenario 3
@@ -147,7 +149,7 @@ void game_t::create_es_3() {
     { '#', ' ', ' ', ' ', ' ', '#', ' ', ' ', '#', ' ', '#', ' ', ' ', '#', '#', ' ', '#' }, 
     { '#', ' ', '>', ' ', ' ', ' ', ' ', ' ', '#', ' ', '#', ' ', ' ', '#', '#', ' ', '#' }, 
     { '#', ' ', '#', '>', ' ', ' ', ' ', ' ', ' ', ' ', '#', ' ', ' ', '#', '#', ' ', '#' }, 
-    { '#', ' ', '#', '#', '#', '#', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#' }, 
+    { '#', ' ', '#', '#', '#', '#', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', 'c', ' ', '#' }, 
     { '#', '>', '#', '#', '#', '#', '#', '#', '#', '#', ' ', '>', ' ', ' ', '#', ' ', '#' }, 
     { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', '#', ' ', ' ', '#', '%', '#' }, 
     { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' }, 
@@ -175,8 +177,10 @@ void game_t::create_es_3() {
   rocks.push_back(rock_4);
   rocks.push_back(rock_5);
   rocks.push_back(rock_6);
-  cure_t cure_1(2,2, ground);
-  cures.push_back(cure_1);
+  //cure_t cure_1(2,2, ground);
+  cures.clear();
+  cure_t cure_3(13,14, ground);
+  cures.push_back(cure_3);
 }
 
 // Escenario 1 es llamado en el constructor del juego
@@ -246,7 +250,6 @@ void game_t::update_control(){
 void game_t::update_player() {
   if(!jugador.get_alive()){
     game_over = true;
-    // Implementar el counter de vidas.
     return;
   }
 
@@ -284,7 +287,6 @@ void game_t::update_rocks(){
     }
   }
   for(int i = 0; i < rocks.size(); i++){
-    //if(jugador.get_x() == rocks[i].get_x() && jugador.get_y() == rocks[i].get_y() + 1)  
     if(jugador.get_x() == rocks[i].get_x() && jugador.get_y() == rocks[i].get_y()){
       int dir = jugador.get_direction();
       if(dir == 3){
@@ -377,14 +379,30 @@ void game_t::update_darts() {
 
 void game_t::update_cure() {
   for(int i = 0; i < cures.size(); i++) {
+    if(cures[i].get_won() == true && stage == 1) {
+       next_stage = true;
+       stage = 2;
+       return;
+    } else if(cures[i].get_won() == true && stage == 2) { 
+      next_stage = true;
+       stage = 3;
+       return;
+    } else if(cures[i].get_won() == true && stage == 3) { 
+      game_won = true;
+      return;
+    }
+  }
+
+  for(int i = 0; i < cures.size(); i++) {
      if(jugador.get_x() == cures[i].get_x() && jugador.get_y() == cures[i].get_y()){
       int dir = jugador.get_direction();
       if(dir == 3){
-        cures.erase(cures.begin() + i);
+        cures[i].move(1, 0, ground);
       }else if (dir == 2){
         cures[i].move(0, 1, ground);
       }else if (dir == 4){
         cures[i].move(0, -1, ground);
+        std::cout << "\033[1;35mMoriii dir = 4\n\033[0m";
       }
     }
     cures[i].move(1, 0, ground);
@@ -411,23 +429,39 @@ void game_t::update_enemies() {
         int x = v[j].get_x(); int y = v[j].get_y();
         enemies.erase(enemies.begin() + i);
         v.erase(v.begin() + j);
-        std::cout <<"////////ENEMIGO MUERTO//////////" << std::endl;
         ground[x][y] = ' ';
       }
     } 
   }
   //iniciar el movimiento de la rutina del enemigo
     //TODO
-}
+}/*
+void game_t::next_stage(){
+
+}*/
 
 void game_t::update_stage() {
-  switch(stage){
-    case 1 : create_es_1();
-              break;
-    case 2 : create_es_2();
-              break;
-    default: create_es_3();
-              break;
+  if(next_stage == true){
+    if(stage == 1) {
+      create_es_1();
+      next_stage = false;
+    } else if(stage == 2) {
+      create_es_2();
+      next_stage = false;
+    }  else if(stage == 3) {
+      next_stage = false;
+      create_es_3();
+    } 
+
+    // switch(stage){
+    //   case 1 : create_es_1();
+    //            break;
+    //   case 2 : create_es_2();
+    //            break;
+    //   case 3: create_es_3();
+    //             break;
+    //   default: game_won = false; break;
+   // }
   }
 }
 
@@ -439,6 +473,7 @@ void game_t::update() {
   update_darts();
   update_cure();
   update_enemies();
+  update_stage();
 }
 
 // Renderizar el juego

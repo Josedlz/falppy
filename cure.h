@@ -5,7 +5,7 @@
 #include <iostream>
 
 class cure_t : public entity_t {
-	bool won;
+	 bool won = false;
 	public:
 		bool c_erase ;
 		cure_t() = default;

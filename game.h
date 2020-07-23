@@ -19,6 +19,7 @@ class game_t
     int* input;
     bool game_over = false;
     bool game_won = false;
+    bool next_stage = false;
 
     int n = 17;
     int m = 17;
@@ -48,13 +49,16 @@ class game_t
     void readr(int* key, bool wait);
     void update();
     void render();
-    void next_stage();
+    //void next_stage();
     void create_header_game();
     void create_footer_game();
     void create_es_1();
     void create_es_2();
     void create_es_3();
     bool running();
+    void set_game_won(bool ok) {game_won = ok;}
+    bool get_game_won(){return game_won;};
+    
 };
 
 #endif
