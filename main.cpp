@@ -3,8 +3,6 @@
 
 #include "game.h"
 
-using namespace std;
-
 // Main
 int main() 
 {
@@ -13,14 +11,21 @@ int main()
   // char key_char;
   // system("clear");
   while(g.running()) {
-    cout << "Presione tecla:  " << endl;
+    std::cout << "Presione tecla:  " << '\n';
     g.readr(&key, false);
-    //cout << char(key) << endl;
+    //std::cout << char(key) << '\n';
     g.update();
     system("clear");
     g.render();
     key = ' ';
+    if(g.get_game_won() == true) { 
+      system("clear");
+      std::cout << "\033[0;35;47mLo lograste, crack!\033[0m";
+      break;
+    } else if(g.get_game_over()) {
+      std::cout << "Game Over :(" << '\n';
+      break;
+    }
   }
-  if(g.get_game_won() == true) cout << "Lo lograste crack!";
-  else cout << "Game Over :(" << endl;
+
 }

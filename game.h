@@ -49,7 +49,6 @@ class game_t
     void readr(int* key, bool wait);
     void update();
     void render();
-    //void next_stage();
     void create_header_game();
     void create_footer_game();
     void create_es_1();
@@ -58,7 +57,8 @@ class game_t
     bool running();
     void set_game_won(bool ok) {game_won = ok;}
     bool get_game_won(){return game_won;};
-    
+    bool get_game_over(){return game_over;};
+
 };
 
 #endif
