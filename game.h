@@ -7,6 +7,7 @@
 #include "enemy.h"
 #include "dardo.h"
 #include "rock.h"
+#include "cure.h"
 
 #include <unistd.h>
 //esta es para la funcion "readr"
@@ -17,6 +18,7 @@ class game_t
   private:
     int* input;
     bool game_over = false;
+    bool game_won = false;
 
     int n = 17;
     int m = 17;
@@ -26,6 +28,7 @@ class game_t
     player_t jugador;
     std::vector<enemy_t> enemies;
     std::vector<rock_t> rocks;
+    std::vector<cure_t> cures;
 
     int lives_in_game = 5;
 

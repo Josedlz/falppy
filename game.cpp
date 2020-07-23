@@ -2,6 +2,7 @@
 #include "game.h"
 #include "enemy.h"
 #include "rock.h"
+#include "cure.h"
 
 // Cabecera del juego (DECORADOR)
 void game_t::create_header_game() {
@@ -71,9 +72,9 @@ void game_t::create_es_1() {
   };
 
   jugador.set_coords(1, 1);
-  enemy_t enemy_1(13, 14, ground);
+  // enemy_t enemy_1(13, 14, ground);
   enemy_t enemy_2(5, 15, ground);
-  enemies.push_back(enemy_1);
+  // enemies.push_back(enemy_1);
   enemies.push_back(enemy_2);
   rock_t rock_1(3, 10, ground);
   rock_t rock_2(5, 9, ground);
@@ -83,6 +84,9 @@ void game_t::create_es_1() {
   rocks.push_back(rock_2);
   rocks.push_back(rock_3);
   rocks.push_back(rock_4);
+  //cure_t cure_1(1,12, ground);
+  cure_t cure_1(11,13, ground);
+  cures.push_back(cure_1);
 }
 
 // Escenario 2
@@ -92,7 +96,7 @@ void game_t::create_es_2() {
     // 0    1     2    3   4    5    6    7    8    9    10   11   12   13   14   15   16 
     { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' }, 
     { '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#' }, 
-    { '#', '>', ' ', ' ', ' ', ' ', ' ', 'o', ' ', '>', ' ', ' ', ' ', ' ', ' ', ' ', '#' }, 
+    { '#', '>', ' ', ' ', 'c', ' ', ' ', 'o', ' ', '>', ' ', ' ', ' ', ' ', ' ', ' ', '#' }, 
     { '#', '#', '#', '#', '#', ' ', ' ', '#', '#', '#', ' ', ' ', '#', '#', '#', '#', '#' }, 
     { '#', ' ', ' ', ' ', ' ', '>', ' ', 'o', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#' }, 
     { '#', '#', '#', ' ', ' ', '#', '#', '#', ' ', ' ', '#', '#', '#', '#', '#', '#', '#' }, 
@@ -121,6 +125,8 @@ void game_t::create_es_2() {
   rocks.push_back(rock_1);
   rocks.push_back(rock_2);
   rocks.push_back(rock_3);
+  cure_t cure_1(2,4, ground);
+  cures.push_back(cure_1);
 }
 
 // Escenario 3
@@ -130,7 +136,7 @@ void game_t::create_es_3() {
     // 0    1     2    3   4    5    6    7    8    9    10   11   12   13   14   15   16 
     { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' }, 
     { '#', ' ', '#', ' ', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#' }, 
-    { '#', ' ', '&', ' ', ' ', ' ', ' ', ' ', '#', ' ', '#', ' ', ' ', '#', '#', ' ', '#' }, 
+    { '#', ' ', 'c', ' ', ' ', ' ', ' ', ' ', '#', ' ', '#', ' ', ' ', '#', '#', ' ', '#' }, 
     { '#', ' ', '#', ' ', ' ', '#', ' ', ' ', '#', ' ', '#', ' ', ' ', '#', '#', ' ', '#' }, 
     { '#', ' ', '#', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', '#', ' ', '#' }, 
     { '#', ' ', '#', ' ', ' ', '#', ' ', ' ', '#', ' ', '#', ' ', ' ', '#', '#', ' ', '#' }, 
@@ -169,6 +175,8 @@ void game_t::create_es_3() {
   rocks.push_back(rock_4);
   rocks.push_back(rock_5);
   rocks.push_back(rock_6);
+  cure_t cure_1(2,2, ground);
+  cures.push_back(cure_1);
 }
 
 // Escenario 1 es llamado en el constructor del juego
@@ -272,7 +280,6 @@ void game_t::update_rocks(){
     for(int j = 0;  j < enemies.size(); j++){
       if(rocks[i].get_x() + 1 == enemies[j].get_x() && rocks[i].get_y() == enemies[j].get_y()){
         enemies.erase(enemies.begin() + j);
-        std::cout <<"////////ENEMIGO MUERTO//////////" << std::endl;
       }
     }
   }
@@ -297,8 +304,8 @@ void game_t::update_darts() {
 
   std::vector<dardo_t>& v = jugador.get_dardos();
 
-  for(auto d : v) std::cout << 'd';
-  std::cout << std::endl;
+  // for(auto d : v) std::cout << 'd';
+  // std::cout << std::endl;
 
   //actualizamos municion
   int a = 0;
@@ -369,18 +376,37 @@ void game_t::update_darts() {
 }
 
 void game_t::update_cure() {
+  for(int i = 0; i < cures.size(); i++) {
+    if(cures[i].get_won()) {
+      game_over = true;
+      return;
+    }
+  }
 
+  for(int i = 0; i < cures.size(); i++) {
+     if(jugador.get_x() == cures[i].get_x() && jugador.get_y() == cures[i].get_y()){
+      int dir = jugador.get_direction();
+      if(dir == 3){
+        cures.erase(cures.begin() + i);
+      }else if (dir == 2){
+        cures[i].move(0, 1, ground);
+      }else if (dir == 4){
+        cures[i].move(0, -1, ground);
+      }
+    }
+    cures[i].move(1, 0, ground);
+  }
 }
 
 // Actualizar enemigos
 void game_t::update_enemies() {
-  for(auto e : enemies){
-    std::cout << 'e';
-  }
-  std::cout << std::endl;
-  for(auto e : enemies){
-    std::cout << e.get_x() << " " << e.get_y() << std::endl;
-  }
+  // for(auto e : enemies){
+  //   std::cout << 'e';
+  // }
+  // std::cout << std::endl;
+  // for(auto e : enemies){
+  //   std::cout << e.get_x() << " " << e.get_y() << std::endl;
+  // }
 
   //checkeamos si los enemigos siguen vivos
   //borramos los enemigos si estan muertos
@@ -427,7 +453,7 @@ void game_t::render() {
   create_header_game();
   for(int i = 0; i < n; i++){
     for(int j=0; j<50/2 - n; j++) 
-        std::cout << "\033[1;32m#\033[0m";
+      std::cout << "\033[1;32m#\033[0m";
     for(int j = 0; j < m; j++){
       if(m-j == 1) {
         std::cout << "\033[1;32m" << ground[i][j] << "\033[0m";
@@ -447,15 +473,6 @@ void game_t::render() {
         } else {
           std::cout << "\033[1;34m" << ground[i][j] << "\033[0m" << " ";
         }
-
-      // if(ground[i][j] == 'p'){
-      //     std::cout << "\033[1;34m" << ground[i][j] << "\033[0m" << " ";
-      //   } else if(ground[i][j] == 'e'){
-      //     std::cout << "\033[1;31m" << ground[i][j] << "\033[0m" << " ";
-      //   } else if(ground[i][j] == 'o'){
-      //     std::cout << "\033[1;30m" << ground[i][j] << "\033[0m" << " ";
-      //   } else if(ground[i][j] == '>'){
-      //     std::cout << "\033[1;33m" << ground[i][j] << "\033[0m" << " ";
       }
     }
     for(int j=0; j<50/2 - n+1; j++) 

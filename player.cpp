@@ -7,7 +7,7 @@ player_t::player_t(int x_, int y_, std::vector<std::vector<char>>& mapa) : entit
 }
 
 void player_t::move(int dx, int dy, std::vector<std::vector<char>>& mapa){
-    if(mapa[x + dx][y + dy] == '#'){
+    if(mapa[x + dx][y + dy] == '#' || mapa[x + dx][y + dy] == '%'){
         return;
     }
 
