@@ -377,13 +377,6 @@ void game_t::update_darts() {
 
 void game_t::update_cure() {
   for(int i = 0; i < cures.size(); i++) {
-    if(cures[i].get_won()) {
-      game_over = true;
-      return;
-    }
-  }
-
-  for(int i = 0; i < cures.size(); i++) {
      if(jugador.get_x() == cures[i].get_x() && jugador.get_y() == cures[i].get_y()){
       int dir = jugador.get_direction();
       if(dir == 3){
