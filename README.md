@@ -18,7 +18,7 @@ $ make
 ```bash
 $ ./falppy
 ```
-
+##### Utiliza WASD para moverte, P para disparar y Q para salir del juego. ¡Que te diviertas!
 ---
 
 ###### Hecho con :heart: por las damas de compañía de Falppy uwu
