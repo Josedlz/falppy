@@ -1,5 +1,5 @@
 # Esta regla compila el principal file
-falppy: main.o cure.o dardo.o enemigo.o objeto.o juego.o jugador.o bola.o
+falppy: main.o cura.o dardo.o enemigo.o objeto.o juego.o jugador.o bola.o
 	g++ -o falppy main.o cura.o dardo.o enemigo.o objeto.o juego.o jugador.o bola.o
 
 main.o: main.cpp juego.h

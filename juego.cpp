@@ -100,7 +100,6 @@ void juego_t::create_es_2() {
   bolas.push_back(bola_1);
   bolas.push_back(bola_2);
   bolas.push_back(bola_3);
-  // cura_t cure_1(2,4, ground);
   curas.clear();
   cura_t cura_2(13,14, ground);
   curas.push_back(cura_2);
@@ -152,7 +151,6 @@ void juego_t::create_es_3() {
   bolas.push_back(bola_4);
   bolas.push_back(bola_5);
   bolas.push_back(bola_6);
-  //cura_t cure_1(2,2, ground);
   curas.clear();
   cura_t cura_3(13,14, ground);
   curas.push_back(cura_3);
