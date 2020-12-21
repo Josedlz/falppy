@@ -1,6 +1,6 @@
 # Esta regla compila el principal file
-falppy: main.o cure.o dardo.o enemigo.o objeto.o juego.o player.o rock.o
-	g++ -o falppy main.o cure.o dardo.o enemigo.o objeto.o juego.o player.o rock.o
+falppy: main.o cure.o dardo.o enemigo.o objeto.o juego.o jugador.o bola.o
+	g++ -o falppy main.o cure.o dardo.o enemigo.o objeto.o juego.o jugador.o bola.o
 
 main.o: main.cpp juego.h
 	g++ -c main.cpp
@@ -20,11 +20,11 @@ objeto.o: objeto.cpp objeto.h
 juego.o: juego.cpp juego.h enemigo.h
 	g++ -c juego.cpp
 
-player.o: player.cpp player.h
-	g++ -c player.cpp
+jugador.o: jugador.cpp jugador.h
+	g++ -c jugador.cpp
 
-rock.o: rock.cpp rock.h
-	g++ -c rock.cpp
+bola.o: bola.cpp bola.h
+	g++ -c bola.cpp
 
 clean:
 	rm -f programa *.o && rm falppy 
