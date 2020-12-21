@@ -1,25 +1,25 @@
 #include <iostream>
+#include <iomanip>
 #include "juego.h"
 #include "enemigo.h"
 #include "bola.h"
 #include "cura.h"
 
-// Cabecera del juego (DECORADOR)
 void juego_t::encabezado() {
-  for(int j=0; j<38; j++) {
-    std::cout << "#";
+  for(int i=0; i<2; i++) {
+  std::cout << std::setw(padding);
+    for(int j=0; j<38; j++) {
+      std::cout << "$";
+    }
+    std::cout << '\n';
   }
-  std::cout << '\n';
-  for(int j=0; j<38; j++) {
-    std::cout << "#";
-  }
-  std::cout << '\n';
 }
-// Pie del juego (DECORADOR)
+
 void juego_t::pie() {
   for(int i=0; i<2; i++) {
+  std::cout << std::setw(padding);
     for(int j=0; j<38; j++) {
-      std::cout << "#";
+      std::cout << "$";
     }
     std::cout << '\n';
   }
@@ -30,23 +30,23 @@ void juego_t::escenario1() {
   ground = 
   { 
     // 0    1     2    3   4    5    6    7    8    9    10   11   12   13   14   15   16 
-    { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' }, //0
-    { '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#' }, //1 
-    { '#', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', '#' }, //2 
-    { '#', ' ', '>', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#' }, //3 
-    { '#', ' ', '>', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', '#' }, //4 
-    { '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#' }, //5 
-    { '#', ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' }, //6 
-    { '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#' }, //7
-    { '#', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', '#' }, //8 
-    { '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#' }, //9
-    { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', ' ', ' ', '#' }, //10
-    { '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#' }, //11
-    { '#', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', '#' }, //12
-    { '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#' }, //13
-    { '#', '#', ' ', '#', '#', '#', ' ', '#', '#', ' ', '#', '#', '#', '#', '#', '%', '#' }, //14 
-    { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' }, //15 
-    { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' }  //16
+    { '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', '$' }, //0
+    { '$', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '$' }, //1 
+    { '$', ' ', ' ', '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', ' ', ' ', ' ', '$' }, //2 
+    { '$', ' ', '>', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '$' }, //3 
+    { '$', ' ', '>', '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', ' ', ' ', '$' }, //4 
+    { '$', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '$' }, //5 
+    { '$', ' ', ' ', ' ', ' ', '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', '$' }, //6 
+    { '$', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '$' }, //7
+    { '$', ' ', ' ', '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', ' ', ' ', ' ', '$' }, //8 
+    { '$', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '$' }, //9
+    { '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', ' ', ' ', ' ', ' ', ' ', '$' }, //10
+    { '$', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '$' }, //11
+    { '$', ' ', ' ', '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', ' ', ' ', '$' }, //12
+    { '$', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '$' }, //13
+    { '$', '$', ' ', '$', '$', '$', ' ', '$', '$', ' ', '$', '$', '$', '$', '$', '@', '$' }, //14 
+    { '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', '$' }, //15 
+    { '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', '$' }  //16
   };
 
   jugador.set_posicion(1, 1);
@@ -64,105 +64,12 @@ void juego_t::escenario1() {
   curas.push_back(cura_1);
 }
 
-// Escenario 2
-void juego_t::escenario2() {
-  ground = 
-  { 
-    // 0    1     2    3   4    5    6    7    8    9    10   11   12   13   14   15   16 
-    { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' }, 
-    { '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#' }, 
-    { '#', '>', ' ', ' ', ' ', ' ', ' ', 'o', ' ', '>', ' ', ' ', ' ', ' ', ' ', ' ', '#' }, 
-    { '#', '#', '#', '#', '#', ' ', ' ', '#', '#', '#', ' ', ' ', '#', '#', '#', '#', '#' }, 
-    { '#', ' ', ' ', ' ', ' ', '>', ' ', 'o', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#' }, 
-    { '#', '#', '#', ' ', ' ', '#', '#', '#', ' ', ' ', '#', '#', '#', '#', '#', '#', '#' }, 
-    { '#', ' ', ' ', ' ', ' ', '>', ' ', 'o', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#' }, 
-    { '#', '#', '#', '#', '#', '#', ' ', '#', '#', '#', '#', ' ', ' ', '#', '#', '#', '#' }, 
-    { '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#' }, 
-    { '#', ' ', '#', '#', '#', '#', '#', ' ', '#', '#', '#', ' ', ' ', '#', '#', '#', '#' }, 
-    { '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#' }, 
-    { '#', '#', '#', '#', '#', ' ', ' ', '#', '#', '#', ' ', ' ', '#', '#', '#', '#', '#' }, 
-    { '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#' }, 
-    { '#', '#', '#', ' ', ' ', '#', '#', '#', ' ', ' ', '#', '#', '#', '#', '#', '#', '#' }, 
-    { '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#' }, 
-    { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '%', '#' }, 
-    { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' }, 
-  };
-  jugador.set_posicion(1, 1);
-  enemigo_t enemigo_1(4, 15, ground);
-  enemigo_t enemigo_2(6, 15, ground);
-  enemigo_t enemigo_3(8, 15, ground);
-  enemies.push_back(enemigo_1);
-  enemies.push_back(enemigo_2);
-  enemies.push_back(enemigo_3);
-  bola_t bola_1(2, 7, ground);
-  bola_t bola_2(4, 7, ground);
-  bola_t bola_3(6, 7, ground);
-  bolas.push_back(bola_1);
-  bolas.push_back(bola_2);
-  bolas.push_back(bola_3);
-  curas.clear();
-  cura_t cura_2(13,14, ground);
-  curas.push_back(cura_2);
-}
-
-// Escenario 3
-void juego_t::escenario3() {
-  ground = 
-  { 
-    // 0    1     2    3   4    5    6    7    8    9    10   11   12   13   14   15   16 
-    { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' }, 
-    { '#', ' ', '#', ' ', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#' }, 
-    { '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', ' ', '#', ' ', ' ', '#', '#', ' ', '#' }, 
-    { '#', ' ', '#', ' ', ' ', '#', ' ', ' ', '#', ' ', '#', ' ', ' ', '#', '#', ' ', '#' }, 
-    { '#', ' ', '#', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', '#', ' ', '#' }, 
-    { '#', ' ', '#', ' ', ' ', '#', ' ', ' ', '#', ' ', '#', ' ', ' ', '#', '#', ' ', '#' }, 
-    { '#', ' ', '#', ' ', ' ', '#', ' ', ' ', '#', ' ', '#', ' ', ' ', ' ', ' ', ' ', '#' }, 
-    { '#', ' ', '#', ' ', ' ', ' ', ' ', ' ', '#', ' ', '#', ' ', ' ', '#', '#', ' ', '#' }, 
-    { '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', ' ', '#', ' ', ' ', '#', '#', ' ', '#' }, 
-    { '#', ' ', ' ', ' ', ' ', '#', ' ', ' ', '#', ' ', '#', ' ', ' ', '>', ' ', ' ', '#' }, 
-    { '#', ' ', ' ', ' ', ' ', '#', ' ', ' ', '#', ' ', '#', ' ', ' ', '#', '#', ' ', '#' }, 
-    { '#', ' ', '>', ' ', ' ', ' ', ' ', ' ', '#', ' ', '#', ' ', ' ', '#', '#', ' ', '#' }, 
-    { '#', ' ', '#', '>', ' ', ' ', ' ', ' ', ' ', ' ', '#', ' ', ' ', '#', '#', ' ', '#' }, 
-    { '#', ' ', '#', '#', '#', '#', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', 'c', ' ', '#' }, 
-    { '#', '>', '#', '#', '#', '#', '#', '#', '#', '#', ' ', '>', ' ', ' ', '#', ' ', '#' }, 
-    { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', '#', ' ', ' ', '#', '%', '#' }, 
-    { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' }, 
-  };
-  jugador.set_posicion(1, 1);
-  enemigo_t enemigo_1(12, 4, ground);
-  enemigo_t enemigo_2(14, 15, ground);
-  enemigo_t enemigo_3(12, 3, ground);
-  enemigo_t enemigo_4(15, 10, ground);
-  enemigo_t enemigo_5(8, 15, ground);
-  enemies.push_back(enemigo_1);
-  enemies.push_back(enemigo_2);
-  enemies.push_back(enemigo_3);
-  enemies.push_back(enemigo_4);
-  enemies.push_back(enemigo_5);
-  bola_t bola_1(1, 10, ground);
-  bola_t bola_2(2, 5, ground);
-  bola_t bola_3(4, 8, ground);
-  bola_t bola_4(11, 5, ground);
-  bola_t bola_5(12, 5, ground);
-  bola_t bola_6(12, 8, ground);
-  bolas.push_back(bola_1);
-  bolas.push_back(bola_2);
-  bolas.push_back(bola_3);
-  bolas.push_back(bola_4);
-  bolas.push_back(bola_5);
-  bolas.push_back(bola_6);
-  curas.clear();
-  cura_t cura_3(13,14, ground);
-  curas.push_back(cura_3);
-}
-
-// Escenario 1 es llamado en el constructor del juego
 juego_t::juego_t(){
   escenario1();
 }
 
 // FUNCION LECTORA DE KEYBOARD SOLO PARA LINUX - REPL.IT
-// Esta funcion lee el input del teclado. 
+// Esta funcion lee el input del teclado.
 // Si "wait" es true espera a que el usuario ingrese algo, si no, espera un tiempo default y continua
 void juego_t::readr(int* key, bool wait) {
   input = key;
@@ -251,7 +158,7 @@ void juego_t::update_jugador() {
 }
 
 void juego_t::update_bolas(){
-  //verificar si hay un enemigo debajo
+  //verifica si hay un enemigo debajo
   for(int i = 0; i < bolas.size(); i++){
     for(int j = 0;  j < enemies.size(); j++){
       if(bolas[i].get_x() + 1 == enemies[j].get_x() && bolas[i].get_y() == enemies[j].get_y()){
@@ -279,9 +186,6 @@ void juego_t::update_dardos() {
 
   std::vector<dardo_t>& v = jugador.get_dardos();
 
-  // for(auto d : v) std::cout << 'd';
-  // std::cout << std::endl;
-
   //actualizamos municion
   int a = 0;
   for(int i = 0; i < v.size(); i++){
@@ -302,11 +206,11 @@ void juego_t::update_dardos() {
   }
   //es un dardo disparado pero que no puedo controlar
   //lo muevo hacia abajo siempre
-  //checkeo si el dardo ha llegado al piso
+  //chequeamos si el dardo ha llegado al piso
   for(int i = 0; i < v.size(); i++){
     if(v[i].disparar() && !v[i].get_control()){
       v[i].move(1, 0, ground);
-      if(ground[v[i].get_x() + 1][v[i].get_y()] == '#' && v[i].get_direccion() == 3){
+      if(ground[v[i].get_x() + 1][v[i].get_y()] == '$' && v[i].get_direccion() == 3){
         ground[v[i].get_x()][v[i].get_y()] = '>';
         v.erase(v.begin() + i);
       }
@@ -353,17 +257,8 @@ void juego_t::update_dardos() {
 void juego_t::update_cura() {
   for(int i = 0; i < curas.size(); i++) {
     if(curas[i].get_won() == true && stage == 1) {
-       next_stage = true;
-       stage = 2;
-       return;
-    } else if(curas[i].get_won() == true && stage == 2) { 
-      next_stage = true;
-       stage = 3;
-       return;
-    } else if(curas[i].get_won() == true && stage == 3) { 
-      juego_won = true;
-      return;
-    }
+       juego_won = true;    
+     }
   }
 
   for(int i = 0; i < curas.size(); i++) {
@@ -375,7 +270,6 @@ void juego_t::update_cura() {
         curas[i].move(0, 1, ground);
       }else if (dir == 4){
         curas[i].move(0, -1, ground);
-        std::cout << "\033[1;35mMoriii dir = 4\n\033[0m";
       }
     }
     curas[i].move(1, 0, ground);
@@ -397,21 +291,6 @@ void juego_t::update_enemigos() {
   }
 }
 
-void juego_t::update_nivel() {
-  if(next_stage == true){
-    if(stage == 1) {
-      escenario1();
-      next_stage = false;
-    } else if(stage == 2) {
-      escenario2();
-      next_stage = false;
-    }  else if(stage == 3) {
-      next_stage = false;
-      escenario3();
-    } 
-  }
-}
-
 void juego_t::update() {
   update_control();
   update_jugador();
@@ -419,19 +298,19 @@ void juego_t::update() {
   update_dardos();
   update_cura();
   update_enemigos();
-  update_nivel();
 }
 
 void juego_t::render() {
   encabezado();
   for(int i = 0; i < n; i++){
+    std::cout << std::setw(padding);
     for(int j=0; j<38/2 - n; j++) 
-      std::cout << "#";
+      std::cout << "$";
     for(int j = 0; j < m; j++){
       if(m-j == 1) {
         std::cout << ground[i][j];
       } else {
-        if(ground[i][j] == '#') {
+        if(ground[i][j] == '$') {
           std::cout << ground[i][j] << " ";
         } else if (ground[i][j] == 'p'){
           std::cout << ground[i][j] << " ";
@@ -441,7 +320,7 @@ void juego_t::render() {
           std::cout << ground[i][j]  << " ";
         } else if(ground[i][j] == '>'){
           std::cout << ground[i][j]  << " ";
-        } else if(ground[i][j] == '%'){
+        } else if(ground[i][j] == '@'){
           std::cout << ground[i][j]  << " ";
         } else if(ground[i][j] == 'c'){
           std::cout << ground[i][j]  << " ";
@@ -451,7 +330,7 @@ void juego_t::render() {
       }
     }
     for(int j=0; j<38/2 - n+1; j++) 
-        std::cout << "#";
+        std::cout << "$";
     std::cout << '\n';
   }
   pie();

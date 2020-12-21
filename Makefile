@@ -1,6 +1,7 @@
-# Esta regla compila el principal file
+#Esto sirve para compilar el programa
+#referencia https://www.youtube.com/watch?v=_r7i5X0rXJk&t=393s
 falppy: main.o cura.o dardo.o enemigo.o objeto.o juego.o jugador.o bola.o
-	g++ -o falppy main.o cura.o dardo.o enemigo.o objeto.o juego.o jugador.o bola.o
+	g++ -o flappy main.o cura.o dardo.o enemigo.o objeto.o juego.o jugador.o bola.o
 
 main.o: main.cpp juego.h
 	g++ -c main.cpp
@@ -27,4 +28,4 @@ bola.o: bola.cpp bola.h
 	g++ -c bola.cpp
 
 clean:
-	rm -f programa *.o && rm falppy 
+	rm -f programa *.o && rm flappy 

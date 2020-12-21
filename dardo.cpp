@@ -1,7 +1,7 @@
 #include "dardo.h"
 
 void dardo_t::move(int dx, int dy, std::vector<std::vector<char>>& mapa){
-    if(mapa[x + dx][y + dy] == '#' || mapa[x + dx][y + dy] == 'o' || mapa[x + dx][y + dy] == '%'){
+    if(mapa[x + dx][y + dy] == '$' || mapa[x + dx][y + dy] == 'o' || mapa[x + dx][y + dy] == '@'){
         if(direccion == 4 && dx == 0 && dy == -1){
             control = false;
         }else
@@ -60,31 +60,29 @@ bool dardo_t::get_control(){
 }
 
 void dardo_t::shoot(int x_, int y_, int dir, std::vector<std::vector<char>>& mapa){
-    //si disparo al lado de una pared, no disparo. si no,
-    //le paso las coordenadas y direccion del jugador que disparo
     switch(dir){
-        case 1: if(mapa[x_ - 1][y_] == '#') return; 
+        case 1: if(mapa[x_ - 1][y_] == '$') return; 
                 shot = true;
                 x = x_ - 1;
                 y = y_;
                 mapa[x][y] = '^';
                 direccion = 1;
                 return;
-        case 2: if(mapa[x_][y_ + 1] == '#') return;
+        case 2: if(mapa[x_][y_ + 1] == '$') return;
                 shot = true;
                 x = x_;
                 y = y_ + 1;
                 mapa[x][y] = '>';
                 direccion = 2;
                 return;
-        case 3: if(mapa[x_ + 1][y_] == '#') return;
+        case 3: if(mapa[x_ + 1][y_] == '$') return;
                 shot = true;
                 x = x_ + 1;
                 y = y_;
                 mapa[x][y] = 'v';
                 direccion = 3;
                 return;
-        case 4: if(mapa[x_][y_ - 1] == '#') return; 
+        case 4: if(mapa[x_][y_ - 1] == '$') return; 
                 shot = true;
                 x = x_;
                 y = y_ - 1;

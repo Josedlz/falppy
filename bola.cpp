@@ -7,7 +7,7 @@ bola_t::bola_t(int x_, int y_, std::vector<std::vector<char>>& mapa) : objeto_t(
 }
 
 void bola_t::move(int dx, int dy, std::vector<std::vector<char>>& mapa){
-    if(mapa[x + dx][y + dy] == '#' || mapa[x + dx][y + dy] == 'o' || mapa[x + dx][y + dy] == '>'){
+    if(mapa[x + dx][y + dy] == '$' || mapa[x + dx][y + dy] == 'o' || mapa[x + dx][y + dy] == '>'){
         return;
     }
     if(dx == 1) mapa[x][y] = ' ';

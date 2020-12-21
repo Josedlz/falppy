@@ -22,6 +22,7 @@ class juego_t
 
     int n = 17;
     int m = 17;
+    unsigned int padding = 10 + (38 / 2);
     std::vector<std::vector<char>> ground{17, std::vector<char>(m)};
 
     bool controlling_jugador = true;
@@ -29,8 +30,6 @@ class juego_t
     std::vector<enemigo_t> enemies;
     std::vector<bola_t> bolas;
     std::vector<cura_t> curas;
-
-    int lives_in_juego = 5;
 
     bool stage_ended = false;
     int stage = 1;
@@ -51,12 +50,9 @@ class juego_t
     void encabezado();
     void pie();
     void escenario1();
-    void escenario2();
-    void escenario3();
     bool running();
     bool get_gano(){return juego_won;};
     bool get_perdio(){return juego_over;};
-
 };
 
 #endif
