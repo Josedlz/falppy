@@ -7,7 +7,6 @@
 class cure_t : public entity_t {
 	 bool won = false;
 	public:
-		bool c_erase ;
 		cure_t() = default;
 		cure_t(int x, int y, std::vector<std::vector<char>>& mapa);
 		void move(int dx, int dy, std::vector<std::vector<char>>& mapa) override;

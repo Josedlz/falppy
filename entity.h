@@ -8,7 +8,7 @@ class entity_t{
 	protected:
 		int x = 0;
 		int y = 0;
-		int direction = 0; //1 : north, 2 : east, 3 : south, 4 : west;
+		int direction = 0; //1 : norte, 2 : este, 3 : sur, 4 : noreste;
 		bool alive = true;
 	public:
 		entity_t() = default;
