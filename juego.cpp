@@ -5,7 +5,7 @@
 #include "cura.h"
 
 // Cabecera del juego (DECORADOR)
-void juego_t::create_header_juego() {
+void juego_t::encabezado() {
   for(int j=0; j<38; j++) {
     std::cout << "#";
   }
@@ -16,7 +16,7 @@ void juego_t::create_header_juego() {
   std::cout << '\n';
 }
 // Pie del juego (DECORADOR)
-void juego_t::create_footer_juego() {
+void juego_t::pie() {
   for(int i=0; i<2; i++) {
     for(int j=0; j<38; j++) {
       std::cout << "#";
@@ -26,7 +26,7 @@ void juego_t::create_footer_juego() {
 }
 
 // Escenario 1
-void juego_t::create_es_1() {
+void juego_t::escenario1() {
   ground = 
   { 
     // 0    1     2    3   4    5    6    7    8    9    10   11   12   13   14   15   16 
@@ -65,7 +65,7 @@ void juego_t::create_es_1() {
 }
 
 // Escenario 2
-void juego_t::create_es_2() {
+void juego_t::escenario2() {
   ground = 
   { 
     // 0    1     2    3   4    5    6    7    8    9    10   11   12   13   14   15   16 
@@ -107,7 +107,7 @@ void juego_t::create_es_2() {
 }
 
 // Escenario 3
-void juego_t::create_es_3() {
+void juego_t::escenario3() {
   ground = 
   { 
     // 0    1     2    3   4    5    6    7    8    9    10   11   12   13   14   15   16 
@@ -160,7 +160,7 @@ void juego_t::create_es_3() {
 
 // Escenario 1 es llamado en el constructor del juego
 juego_t::juego_t(){
-  create_es_1();
+  escenario1();
 }
 
 // FUNCION LECTORA DE KEYBOARD SOLO PARA LINUX - REPL.IT
@@ -204,7 +204,7 @@ void juego_t::update_control(){
     //debo comprobar si hay dardos en el aire
     //que puedo controlar
     for(int i = 0; i < v.size(); i++){
-      if(v[i].get_shot() && v[i].get_control()){
+      if(v[i].disparar() && v[i].get_control()){
         controlling_jugador = false;
         return;
       }
@@ -213,7 +213,7 @@ void juego_t::update_control(){
   //debo ver si hay algun dardo para controlar
   if(!controlling_jugador){
     for(int i = 0; i < v.size(); i++){
-      if(v[i].get_shot() && v[i].get_control()){
+      if(v[i].disparar() && v[i].get_control()){
         return;
       }
     }
@@ -223,7 +223,7 @@ void juego_t::update_control(){
 
 // Actualizar al jugador
 void juego_t::update_jugador() {
-  if(!jugador.get_alive()){
+  if(!jugador.get_vida()){
     juego_over = true;
     return;
   }
@@ -246,7 +246,7 @@ void juego_t::update_jugador() {
 
     for(int i = 0; i < enemies.size(); i++) {
       if(enemies[i].get_x() == jugador.get_x() && enemies[i].get_y() == jugador.get_y()){
-        jugador.set_alive(false);
+        jugador.set_vida(false);
         ground[jugador.get_x()][jugador.get_y()] = 'x';
     }
   }
@@ -277,7 +277,7 @@ void juego_t::update_bolas(){
 }
 
 // Actualizar dardos
-void juego_t::update_darts() {
+void juego_t::update_dardos() {
 
   std::vector<dardo_t>& v = jugador.get_dardos();
 
@@ -287,16 +287,16 @@ void juego_t::update_darts() {
   //actualizamos municion
   int a = 0;
   for(int i = 0; i < v.size(); i++){
-    if(!v[i].get_shot()){
+    if(!v[i].disparar()){
       a++;
     }
   }
-  jugador.set_ammo(a);
+  jugador.set_municion(a);
   //si presione la tecla de disparar y tengo municion
-  if(*input == 'k' && jugador.get_ammo() > 0){
+  if(*input == 'k' && jugador.get_municion() > 0){
   //disparar el que todavia no se ha disparado
     for(int i = 0; i < v.size(); i++){
-      if(!v[i].get_shot()){
+      if(!v[i].disparar()){
         v[i].shoot(jugador.get_x(), jugador.get_y(), jugador.get_direccion(), ground);
         break;
       }
@@ -306,7 +306,7 @@ void juego_t::update_darts() {
   //lo muevo hacia abajo siempre
   //checkeo si el dardo ha llegado al piso
   for(int i = 0; i < v.size(); i++){
-    if(v[i].get_shot() && !v[i].get_control()){
+    if(v[i].disparar() && !v[i].get_control()){
       v[i].move(1, 0, ground);
       if(ground[v[i].get_x() + 1][v[i].get_y()] == '#' && v[i].get_direccion() == 3){
         ground[v[i].get_x()][v[i].get_y()] = '>';
@@ -316,7 +316,7 @@ void juego_t::update_darts() {
   }
   //mover a los que estan en el aire
   for(int i = 0; i < v.size(); i++){
-    if(v[i].get_shot() && v[i].get_control()){
+    if(v[i].disparar() && v[i].get_control()){
       switch (v[i].get_direccion()){
         case 4 : v[i].move(0, -1, ground);
                     break;
@@ -334,15 +334,15 @@ void juego_t::update_darts() {
   //si estoy controlando los dardos, los cambio de direccion
   if(!controlling_jugador) {
     for(int i = 0; i < v.size(); i++){
-      if(v[i].get_shot() && v[i].get_control()){
+      if(v[i].disparar() && v[i].get_control()){
         switch(*input){
-          case 'a' : v[i].set_direction(4);
+          case 'a' : v[i].set_direccion(4);
                      break;
-          case 's' : v[i].set_direction(3);;
+          case 's' : v[i].set_direccion(3);;
                      break;
-          case 'd' : v[i].set_direction(2);;
+          case 'd' : v[i].set_direccion(2);;
                      break;
-          case 'w' : v[i].set_direction(1);;
+          case 'w' : v[i].set_direccion(1);;
                      break;
           case 'q' : juego_over = true;
                       break;
@@ -385,7 +385,7 @@ void juego_t::update_cura() {
 }
 
 // Actualizar enemigos
-void juego_t::update_enemies() {
+void juego_t::update_enemigos() {
   std::vector<dardo_t>& v = jugador.get_dardos();
   for(int i = 0; i < enemies.size(); i++){
     for(int j = 0; j < v.size(); j++){
@@ -399,17 +399,17 @@ void juego_t::update_enemies() {
   }
 }
 
-void juego_t::update_stage() {
+void juego_t::update_nivel() {
   if(next_stage == true){
     if(stage == 1) {
-      create_es_1();
+      escenario1();
       next_stage = false;
     } else if(stage == 2) {
-      create_es_2();
+      escenario2();
       next_stage = false;
     }  else if(stage == 3) {
       next_stage = false;
-      create_es_3();
+      escenario3();
     } 
   }
 }
@@ -418,14 +418,14 @@ void juego_t::update() {
   update_control();
   update_jugador();
   update_bolas();
-  update_darts();
+  update_dardos();
   update_cura();
-  update_enemies();
-  update_stage();
+  update_enemigos();
+  update_nivel();
 }
 
 void juego_t::render() {
-  create_header_juego();
+  encabezado();
   for(int i = 0; i < n; i++){
     for(int j=0; j<38/2 - n; j++) 
       std::cout << "#";
@@ -456,7 +456,7 @@ void juego_t::render() {
         std::cout << "#";
     std::cout << '\n';
   }
-  create_footer_juego();
+  pie();
 }
 
 // 

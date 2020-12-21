@@ -38,25 +38,24 @@ class juego_t
     void update_control();
     void update_jugador();
     void update_bolas();
-    void update_darts();
+    void update_dardos();
     void update_cura();
-    void update_enemies();
-    void update_stage();
+    void update_enemigos();
+    void update_nivel();
   public:
     juego_t();
     virtual ~juego_t() = default;
     void readr(int* key, bool wait);
     void update();
     void render();
-    void create_header_juego();
-    void create_footer_juego();
-    void create_es_1();
-    void create_es_2();
-    void create_es_3();
+    void encabezado();
+    void pie();
+    void escenario1();
+    void escenario2();
+    void escenario3();
     bool running();
-    void set_juego_won(bool ok) {juego_won = ok;}
-    bool get_juego_won(){return juego_won;};
-    bool get_juego_over(){return juego_over;};
+    bool get_gano(){return juego_won;};
+    bool get_perdio(){return juego_over;};
 
 };
 

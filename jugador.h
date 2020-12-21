@@ -15,8 +15,8 @@ class jugador_t : public objeto_t{
 		std::vector<dardo_t>& get_dardos();
 		bool get_control();
 		void set_control(bool state);
-		int get_ammo();
-		void set_ammo(int a);
+		int get_municion();
+		void set_municion(int a);
 };
 
 #endif

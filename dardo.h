@@ -10,9 +10,9 @@ class dardo_t : public objeto_t{
 		dardo_t() = default;
 		~dardo_t() = default;
 		void move(int dx, int dy, std::vector<std::vector<char>>& mapa) override;
-		void set_direction(int d);
+		void set_direccion(int d);
 		void shoot(int x_, int y_, int dir, std::vector<std::vector<char>>& mapa);
-		bool get_shot();
+		bool disparar();
 		bool get_control();
 };
 

@@ -12,15 +12,15 @@ void jugador_t::move(int dx, int dy, std::vector<std::vector<char>>& mapa){
     }
 
     if(dx == 0 && dy == -1){
-        direction = 4;
+        direccion = 4;
     }else
     if(dx == 1 && dy == 0){
-        direction = 3;
+        direccion = 3;
     }else
     if(dx == 0 && dy == 1){
-        direction = 2;
+        direccion = 2;
     }else if(dx == -1 && dy == 0){
-        direction = 1;
+        direccion = 1;
     }
 
     mapa[x][y] = ' ';
@@ -37,10 +37,10 @@ std::vector<dardo_t>& jugador_t::get_dardos() {
     return dardos;
 }
 
-int jugador_t::get_ammo() {
+int jugador_t::get_municion() {
     return ammo;
 }
 
-void jugador_t::set_ammo(int a) {
+void jugador_t::set_municion(int a) {
     ammo = a;
 }

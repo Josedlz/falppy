@@ -2,20 +2,20 @@
 #include "juego.h"
 
 int main() {
-  juego_t g;
+  juego_t juego;
   int key = 0;
-  while(g.running()) {
+  while(juego.running()) {
     std::cout << "Presiona cualquier tecla:  " << '\n';
-    g.readr(&key, false);
-    g.update();
+    juego.readr(&key, false);
+    juego.update();
     system("clear");
-    g.render();
+    juego.render();
     key = ' ';
-    if(g.get_juego_won() == true) { 
+    if(juego.get_gano() == true) { 
       system("clear");
       std::cout << "GANASTE!";
       break;
-    } else if(g.get_juego_over()) {
+    } else if(juego.get_perdio()) {
       std::cout << "Game Over :(" << '\n';
       break;
     }

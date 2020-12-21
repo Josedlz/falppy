@@ -19,14 +19,14 @@ int objeto_t::get_y(){
 }
 
 int objeto_t::get_direccion(){
-    return direction;
+    return direccion;
 }
 
-bool objeto_t::get_alive(){
+bool objeto_t::get_vida(){
     return alive;
 }
 
-void objeto_t::set_alive(bool state){
+void objeto_t::set_vida(bool state){
     alive = state;
 }
 
