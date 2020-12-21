@@ -5,7 +5,7 @@ objeto_t::objeto_t(int x_, int y_, std::vector<std::vector<char>>& mapa){
     y = y_;
 }
 
-void objeto_t::set_coords(int x_, int y_){
+void objeto_t::set_posicion(int x_, int y_){
     x = x_;
     y = y_;
 }
@@ -18,7 +18,7 @@ int objeto_t::get_y(){
     return y;
 }
 
-int objeto_t::get_direction(){
+int objeto_t::get_direccion(){
     return direction;
 }
 

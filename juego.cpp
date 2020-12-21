@@ -49,7 +49,7 @@ void juego_t::create_es_1() {
     { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' }  //16
   };
 
-  jugador.set_coords(1, 1);
+  jugador.set_posicion(1, 1);
   enemigo_t enemigo_2(5, 15, ground);
   enemies.push_back(enemigo_2);
   bola_t bola_1(3, 10, ground);
@@ -87,7 +87,7 @@ void juego_t::create_es_2() {
     { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '%', '#' }, 
     { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' }, 
   };
-  jugador.set_coords(1, 1);
+  jugador.set_posicion(1, 1);
   enemigo_t enemigo_1(4, 15, ground);
   enemigo_t enemigo_2(6, 15, ground);
   enemigo_t enemigo_3(8, 15, ground);
@@ -129,7 +129,7 @@ void juego_t::create_es_3() {
     { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', '#', ' ', ' ', '#', '%', '#' }, 
     { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' }, 
   };
-  jugador.set_coords(1, 1);
+  jugador.set_posicion(1, 1);
   enemigo_t enemigo_1(12, 4, ground);
   enemigo_t enemigo_2(14, 15, ground);
   enemigo_t enemigo_3(12, 3, ground);
@@ -263,7 +263,7 @@ void juego_t::update_bolas(){
   }
   for(int i = 0; i < bolas.size(); i++){
     if(jugador.get_x() == bolas[i].get_x() && jugador.get_y() == bolas[i].get_y()){
-      int dir = jugador.get_direction();
+      int dir = jugador.get_direccion();
       if(dir == 3){
         bolas.erase(bolas.begin() + i);
       }else if (dir == 2){
@@ -297,7 +297,7 @@ void juego_t::update_darts() {
   //disparar el que todavia no se ha disparado
     for(int i = 0; i < v.size(); i++){
       if(!v[i].get_shot()){
-        v[i].shoot(jugador.get_x(), jugador.get_y(), jugador.get_direction(), ground);
+        v[i].shoot(jugador.get_x(), jugador.get_y(), jugador.get_direccion(), ground);
         break;
       }
     }
@@ -308,7 +308,7 @@ void juego_t::update_darts() {
   for(int i = 0; i < v.size(); i++){
     if(v[i].get_shot() && !v[i].get_control()){
       v[i].move(1, 0, ground);
-      if(ground[v[i].get_x() + 1][v[i].get_y()] == '#' && v[i].get_direction() == 3){
+      if(ground[v[i].get_x() + 1][v[i].get_y()] == '#' && v[i].get_direccion() == 3){
         ground[v[i].get_x()][v[i].get_y()] = '>';
         v.erase(v.begin() + i);
       }
@@ -317,7 +317,7 @@ void juego_t::update_darts() {
   //mover a los que estan en el aire
   for(int i = 0; i < v.size(); i++){
     if(v[i].get_shot() && v[i].get_control()){
-      switch (v[i].get_direction()){
+      switch (v[i].get_direccion()){
         case 4 : v[i].move(0, -1, ground);
                     break;
         case 3 : v[i].move(1, 0, ground);
@@ -370,7 +370,7 @@ void juego_t::update_cura() {
 
   for(int i = 0; i < curas.size(); i++) {
      if(jugador.get_x() == curas[i].get_x() && jugador.get_y() == curas[i].get_y()){
-      int dir = jugador.get_direction();
+      int dir = jugador.get_direccion();
       if(dir == 3){
         curas[i].move(1, 0, ground);
       }else if (dir == 2){

@@ -39,7 +39,7 @@ class juego_t
     void update_jugador();
     void update_bolas();
     void update_darts();
-    void update_curas();
+    void update_cura();
     void update_enemies();
     void update_stage();
   public:

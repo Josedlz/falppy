@@ -14,10 +14,10 @@ class objeto_t{
 		objeto_t() = default;
 		objeto_t(int x, int y, std::vector<std::vector<char>>& mapa);
 		virtual void move(int dx, int dy, std::vector<std::vector<char>>& mapa) = 0;
-		virtual void set_coords(int x_, int y_);
+		virtual void set_posicion(int x_, int y_);
 		virtual int get_x();
 		virtual int get_y();
-		virtual int get_direction();
+		virtual int get_direccion();
 		virtual bool get_alive();
 		virtual void set_alive(bool state);
 };
