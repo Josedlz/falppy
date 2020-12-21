@@ -7,7 +7,7 @@
 #include "enemigo.h"
 #include "dardo.h"
 #include "bola.h"
-#include "cure.h"
+#include "cura.h"
 
 #include <unistd.h>
 #include <termios.h>
@@ -28,7 +28,7 @@ class juego_t
     jugador_t jugador;
     std::vector<enemigo_t> enemies;
     std::vector<bola_t> bolas;
-    std::vector<cure_t> cures;
+    std::vector<cura_t> curas;
 
     int lives_in_juego = 5;
 
@@ -39,7 +39,7 @@ class juego_t
     void update_jugador();
     void update_bolas();
     void update_darts();
-    void update_cure();
+    void update_curas();
     void update_enemies();
     void update_stage();
   public:

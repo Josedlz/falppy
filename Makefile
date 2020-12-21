@@ -1,12 +1,12 @@
 # Esta regla compila el principal file
 falppy: main.o cure.o dardo.o enemigo.o objeto.o juego.o jugador.o bola.o
-	g++ -o falppy main.o cure.o dardo.o enemigo.o objeto.o juego.o jugador.o bola.o
+	g++ -o falppy main.o cura.o dardo.o enemigo.o objeto.o juego.o jugador.o bola.o
 
 main.o: main.cpp juego.h
 	g++ -c main.cpp
 
-cure.o: cure.cpp cure.h
-	g++ -c cure.cpp
+cura.o: cura.cpp cura.h
+	g++ -c cura.cpp
 
 dardo.o: dardo.cpp dardo.h
 	g++ -c dardo.cpp

@@ -2,7 +2,7 @@
 #include "juego.h"
 #include "enemigo.h"
 #include "bola.h"
-#include "cure.h"
+#include "cura.h"
 
 // Cabecera del juego (DECORADOR)
 void juego_t::create_header_juego() {
@@ -60,8 +60,8 @@ void juego_t::create_es_1() {
   bolas.push_back(bola_2);
   bolas.push_back(bola_3);
   bolas.push_back(bola_4);
-  cure_t cure_1(11,13, ground);
-  cures.push_back(cure_1);
+  cura_t cura_1(11,13, ground);
+  curas.push_back(cura_1);
 }
 
 // Escenario 2
@@ -100,10 +100,10 @@ void juego_t::create_es_2() {
   bolas.push_back(bola_1);
   bolas.push_back(bola_2);
   bolas.push_back(bola_3);
-  // cure_t cure_1(2,4, ground);
-  cures.clear();
-  cure_t cure_2(13,14, ground);
-  cures.push_back(cure_2);
+  // cura_t cure_1(2,4, ground);
+  curas.clear();
+  cura_t cura_2(13,14, ground);
+  curas.push_back(cura_2);
 }
 
 // Escenario 3
@@ -152,10 +152,10 @@ void juego_t::create_es_3() {
   bolas.push_back(bola_4);
   bolas.push_back(bola_5);
   bolas.push_back(bola_6);
-  //cure_t cure_1(2,2, ground);
-  cures.clear();
-  cure_t cure_3(13,14, ground);
-  cures.push_back(cure_3);
+  //cura_t cure_1(2,2, ground);
+  curas.clear();
+  cura_t cura_3(13,14, ground);
+  curas.push_back(cura_3);
 }
 
 // Escenario 1 es llamado en el constructor del juego
@@ -352,35 +352,35 @@ void juego_t::update_darts() {
   }
 }
 
-void juego_t::update_cure() {
-  for(int i = 0; i < cures.size(); i++) {
-    if(cures[i].get_won() == true && stage == 1) {
+void juego_t::update_cura() {
+  for(int i = 0; i < curas.size(); i++) {
+    if(curas[i].get_won() == true && stage == 1) {
        next_stage = true;
        stage = 2;
        return;
-    } else if(cures[i].get_won() == true && stage == 2) { 
+    } else if(curas[i].get_won() == true && stage == 2) { 
       next_stage = true;
        stage = 3;
        return;
-    } else if(cures[i].get_won() == true && stage == 3) { 
+    } else if(curas[i].get_won() == true && stage == 3) { 
       juego_won = true;
       return;
     }
   }
 
-  for(int i = 0; i < cures.size(); i++) {
-     if(jugador.get_x() == cures[i].get_x() && jugador.get_y() == cures[i].get_y()){
+  for(int i = 0; i < curas.size(); i++) {
+     if(jugador.get_x() == curas[i].get_x() && jugador.get_y() == curas[i].get_y()){
       int dir = jugador.get_direction();
       if(dir == 3){
-        cures[i].move(1, 0, ground);
+        curas[i].move(1, 0, ground);
       }else if (dir == 2){
-        cures[i].move(0, 1, ground);
+        curas[i].move(0, 1, ground);
       }else if (dir == 4){
-        cures[i].move(0, -1, ground);
+        curas[i].move(0, -1, ground);
         std::cout << "\033[1;35mMoriii dir = 4\n\033[0m";
       }
     }
-    cures[i].move(1, 0, ground);
+    curas[i].move(1, 0, ground);
   }
 }
 
@@ -419,7 +419,7 @@ void juego_t::update() {
   update_jugador();
   update_bolas();
   update_darts();
-  update_cure();
+  update_cura();
   update_enemies();
   update_stage();
 }
