@@ -1,7 +1,6 @@
 #include "dardo.h"
 
 void dardo_t::move(int dx, int dy, std::vector<std::vector<char>>& mapa){
-
     if(mapa[x + dx][y + dy] == '#' || mapa[x + dx][y + dy] == 'o' || mapa[x + dx][y + dy] == '%'){
         if(direction == 4 && dx == 0 && dy == -1){
             control = false;
@@ -26,25 +25,28 @@ void dardo_t::move(int dx, int dy, std::vector<std::vector<char>>& mapa){
     if(dx == 0 && dy == -1){
         mapa[x][y] = '<';
         direction = 4;
-    }else
-    if(dx == 1 && dy == 0){
-        mapa[x][y] = 'v'; 
-        direction = 3;
-    }else
-    if(dx == 0 && dy == 1){
-        mapa[x][y] = '>';
-        direction = 2;
-    }else
-    if(dx == -1 && dy == 0){
-        mapa[x][y] = '^';
-        direction = 1;
-    }
-    else{
-        switch(direction){
-            case 1 : mapa[x][y] = '^';
-            case 3 : mapa[x][y] = 'v';
-            case 4 : mapa[x][y] = '<';
-            default : mapa[x][y] = '>';
+    } else {
+        if(dx == 1 && dy == 0){
+            mapa[x][y] = 'v'; 
+            direction = 3;
+        } else {
+            if(dx == 0 && dy == 1){
+            mapa[x][y] = '>';
+            direction = 2;
+            } else {
+                if(dx == -1 && dy == 0){
+                    mapa[x][y] = '^';
+                    direction = 1;
+                }
+                else{
+                    switch(direction){
+                        case 1 : mapa[x][y] = '^';
+                        case 3 : mapa[x][y] = 'v';
+                        case 4 : mapa[x][y] = '<';
+                        default : mapa[x][y] = '>';
+                    }
+                }
+            }                                                                                          
         }
     }
 }
@@ -94,8 +96,4 @@ void dardo_t::shoot(int x_, int y_, int dir, std::vector<std::vector<char>>& map
 
 bool dardo_t::get_shot(){
     return shot;
-}
-
-void dardo_t::set_shot(bool state){
-    shot = state;
 }
