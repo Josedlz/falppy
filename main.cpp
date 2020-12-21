@@ -1,8 +1,8 @@
 #include <iostream>
-#include "game.h"
+#include "juego.h"
 
 int main() {
-  game_t g;
+  juego_t g;
   int key = 0;
   while(g.running()) {
     std::cout << "Presiona cualquier tecla:  " << '\n';
@@ -11,11 +11,11 @@ int main() {
     system("clear");
     g.render();
     key = ' ';
-    if(g.get_game_won() == true) { 
+    if(g.get_juego_won() == true) { 
       system("clear");
       std::cout << "GANASTE!";
       break;
-    } else if(g.get_game_over()) {
+    } else if(g.get_juego_over()) {
       std::cout << "Game Over :(" << '\n';
       break;
     }

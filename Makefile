@@ -1,8 +1,8 @@
 # Esta regla compila el principal file
-falppy: main.o cure.o dardo.o enemigo.o objeto.o game.o player.o rock.o
-	g++ -o falppy main.o cure.o dardo.o enemigo.o objeto.o game.o player.o rock.o
+falppy: main.o cure.o dardo.o enemigo.o objeto.o juego.o player.o rock.o
+	g++ -o falppy main.o cure.o dardo.o enemigo.o objeto.o juego.o player.o rock.o
 
-main.o: main.cpp game.h
+main.o: main.cpp juego.h
 	g++ -c main.cpp
 
 cure.o: cure.cpp cure.h
@@ -17,8 +17,8 @@ enemigo.o: enemigo.cpp enemigo.h
 objeto.o: objeto.cpp objeto.h
 	g++ -c objeto.cpp
 
-game.o: game.cpp game.h enemigo.h
-	g++ -c game.cpp
+juego.o: juego.cpp juego.h enemigo.h
+	g++ -c juego.cpp
 
 player.o: player.cpp player.h
 	g++ -c player.cpp
