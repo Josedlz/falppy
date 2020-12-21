@@ -1,6 +1,6 @@
 #include <iostream>
 #include "game.h"
-#include "enemy.h"
+#include "enemigo.h"
 #include "rock.h"
 #include "cure.h"
 
@@ -50,8 +50,8 @@ void game_t::create_es_1() {
   };
 
   jugador.set_coords(1, 1);
-  enemy_t enemy_2(5, 15, ground);
-  enemies.push_back(enemy_2);
+  enemigo_t enemigo_2(5, 15, ground);
+  enemies.push_back(enemigo_2);
   rock_t rock_1(3, 10, ground);
   rock_t rock_2(5, 9, ground);
   rock_t rock_3(7, 8, ground);
@@ -88,12 +88,12 @@ void game_t::create_es_2() {
     { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' }, 
   };
   jugador.set_coords(1, 1);
-  enemy_t enemy_1(4, 15, ground);
-  enemy_t enemy_2(6, 15, ground);
-  enemy_t enemy_3(8, 15, ground);
-  enemies.push_back(enemy_1);
-  enemies.push_back(enemy_2);
-  enemies.push_back(enemy_3);
+  enemigo_t enemigo_1(4, 15, ground);
+  enemigo_t enemigo_2(6, 15, ground);
+  enemigo_t enemigo_3(8, 15, ground);
+  enemies.push_back(enemigo_1);
+  enemies.push_back(enemigo_2);
+  enemies.push_back(enemigo_3);
   rock_t rock_1(2, 7, ground);
   rock_t rock_2(4, 7, ground);
   rock_t rock_3(6, 7, ground);
@@ -130,16 +130,16 @@ void game_t::create_es_3() {
     { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' }, 
   };
   jugador.set_coords(1, 1);
-  enemy_t enemy_1(12, 4, ground);
-  enemy_t enemy_2(14, 15, ground);
-  enemy_t enemy_3(12, 3, ground);
-  enemy_t enemy_4(15, 10, ground);
-  enemy_t enemy_5(8, 15, ground);
-  enemies.push_back(enemy_1);
-  enemies.push_back(enemy_2);
-  enemies.push_back(enemy_3);
-  enemies.push_back(enemy_4);
-  enemies.push_back(enemy_5);
+  enemigo_t enemigo_1(12, 4, ground);
+  enemigo_t enemigo_2(14, 15, ground);
+  enemigo_t enemigo_3(12, 3, ground);
+  enemigo_t enemigo_4(15, 10, ground);
+  enemigo_t enemigo_5(8, 15, ground);
+  enemies.push_back(enemigo_1);
+  enemies.push_back(enemigo_2);
+  enemies.push_back(enemigo_3);
+  enemies.push_back(enemigo_4);
+  enemies.push_back(enemigo_5);
   rock_t rock_1(1, 10, ground);
   rock_t rock_2(2, 5, ground);
   rock_t rock_3(4, 8, ground);

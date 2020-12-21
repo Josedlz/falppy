@@ -1,6 +1,6 @@
 #include "player.h"
 
-player_t::player_t(int x_, int y_, std::vector<std::vector<char>>& mapa) : entity_t(x_, y_, mapa){
+player_t::player_t(int x_, int y_, std::vector<std::vector<char>>& mapa) : objeto_t(x_, y_, mapa){
     x = x_;
     y = y_;
     mapa[x][y] = 'p';
@@ -32,7 +32,7 @@ void player_t::move(int dx, int dy, std::vector<std::vector<char>>& mapa){
     }
     mapa[x][y] = 'p';
 }
-   
+
 std::vector<dardo_t>& player_t::get_dardos() {
     return dardos;
 }

@@ -1,8 +1,8 @@
 #ifndef DARDO_H
 #define DARDO_H
-#include "entity.h"
+#include "objeto.h"
 
-class dardo_t : public entity_t{
+class dardo_t : public objeto_t{
 	private:
 		bool control = true;
 		bool shot = false;

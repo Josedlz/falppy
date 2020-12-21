@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 #include "player.h"
-#include "enemy.h"
+#include "enemigo.h"
 #include "dardo.h"
 #include "rock.h"
 #include "cure.h"
@@ -27,7 +27,7 @@ class game_t
 
     bool controlling_player = true;
     player_t jugador;
-    std::vector<enemy_t> enemies;
+    std::vector<enemigo_t> enemies;
     std::vector<rock_t> rocks;
     std::vector<cure_t> cures;
 

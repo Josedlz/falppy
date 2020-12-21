@@ -1,10 +1,10 @@
 #ifndef CURE_H
 #define CURE_H
 
-#include "entity.h"
+#include "objeto.h"
 #include <iostream>
 
-class cure_t : public entity_t {
+class cure_t : public objeto_t {
 	 bool won = false;
 	public:
 		cure_t() = default;

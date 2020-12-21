@@ -1,6 +1,6 @@
 #include "cure.h"
 
-cure_t::cure_t(int x_, int y_, std::vector<std::vector<char>>& mapa) : entity_t(x_, y_, mapa){
+cure_t::cure_t(int x_, int y_, std::vector<std::vector<char>>& mapa) : objeto_t(x_, y_, mapa){
     x = x_;
     y = y_;
     mapa[x][y] = 'c';

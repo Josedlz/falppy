@@ -1,10 +1,10 @@
 #ifndef ROCK_H
 #define ROCK_H
 
-#include "entity.h"
+#include "objeto.h"
 #include <iostream>
 
-class rock_t : public entity_t {
+class rock_t : public objeto_t {
 	public:
 		rock_t() = default;
 		rock_t(int x, int y, std::vector<std::vector<char>>& mapa);

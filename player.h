@@ -1,10 +1,10 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "entity.h"
+#include "objeto.h"
 #include "dardo.h"
 
-class player_t : public entity_t{
+class player_t : public objeto_t{
 	private:
 		std::vector<dardo_t> dardos;
 		int ammo = 0;
